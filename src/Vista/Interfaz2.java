@@ -5,6 +5,7 @@
 package Vista;
 
 import Vista.Interfaz1;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,6 +17,9 @@ public class Interfaz2 extends javax.swing.JFrame {
      * Creates new form Interfaz2
      */
     public Interfaz2() {
+        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/hotelicon.png"));
+        this.setIconImage(icon.getImage());
+        this.setLocationRelativeTo(null);
         initComponents();
         this.setLocationRelativeTo(null);
         btnreserva.setEnabled(false);
