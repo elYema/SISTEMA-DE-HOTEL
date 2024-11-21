@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package sistema.de.hotel;
+package Vista;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -109,7 +109,6 @@ public class Interfaz1 extends javax.swing.JFrame {
         btnreserva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 900));
         setSize(new java.awt.Dimension(1100, 900));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
