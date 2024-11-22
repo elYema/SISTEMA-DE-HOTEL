@@ -17,9 +17,8 @@ public class Interfaz2 extends javax.swing.JFrame {
      * Creates new form Interfaz2
      */
     public Interfaz2() {
-        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/hotelicon.png"));
         this.setIconImage(icon.getImage());
-        setTitle("TravelNest - OrgiaAnal.txt");
         this.setLocationRelativeTo(null);
         initComponents();
         this.setLocationRelativeTo(null);

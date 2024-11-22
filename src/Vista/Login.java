@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
         
         if ((Usuario.equalsIgnoreCase("admin") && Clave.equals("123"))){
             this.dispose();
-            new INICIO().setVisible(true);
+            new Interfaz2().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null,"Credenciales Incorrectas","Mensaje", JOptionPane.ERROR_MESSAGE);
             txtUsuario.setText("");
