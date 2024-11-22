@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import Modelo.Reserva;
+import Modelo.ReservaIndividual;
+import Modelo.ReservaFamiliar;
+import Modelo.ReservaDoble;
+import Controlador.Proceso;
 /**
  *
  * @author jheaf
@@ -16,37 +21,56 @@ public class Interfaz1 extends javax.swing.JFrame {
     
     ArrayList<Reserva> listaReservas;  // Lista para almacenar las reservas
     DefaultTableModel modelo;  // Modelo para la tabla
+    private Proceso proceso = new Proceso();
     int fila;
 
     /**
      * Creates new form Interfaz1
      */
     public Interfaz1() {
-        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/hotelicon.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
+        setTitle("TravelNest - OrgiaAnal.txt");
         this.setLocationRelativeTo(null);
-    
         this.setLocationRelativeTo(null);
         initComponents();
         listaReservas = new ArrayList<>();
         modelo = (DefaultTableModel) tblhotel.getModel();
+        proceso.cargarDatos(listaReservas, modelo);
          setLocationRelativeTo(this);
         
     }
     void agregarTabla() {
-        Object[] ob = new Object[7];  // Arreglo para almacenar los datos de la reserva
-        for (int i = 0; i < listaReservas.size(); i++) {
-            ob[0] = listaReservas.get(i).getNombre();
-            ob[1] = listaReservas.get(i).getTelefono();
-            ob[2] = listaReservas.get(i).getCorreo();
-            ob[3] = listaReservas.get(i).getDireccion();
-            ob[4] = listaReservas.get(i).getFechaLlegada();
-            ob[5] = listaReservas.get(i).getFechaSalida();
-            ob[6] = listaReservas.get(i).getTipoHabitacion();
-            modelo.addRow(ob);  // Agregar la fila a la tabla
+    Object[] ob = new Object[8];  // Arreglo para almacenar los datos de la reserva
+    modelo.setRowCount(0);  // Limpiar el modelo de la tabla antes de agregar filas nuevas
+    
+
+    for (int i = 0; i < listaReservas.size(); i++) {
+        String tipoHabitacion = listaReservas.get(i).getTipoHabitacion();
+        int numeroPersonas = listaReservas.get(i).getNumeroPersonas();
+
+        // Verificar si el tipo de habitación es "Individual" y excede 1 persona
+        if (tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) {
+            JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.", 
+                                          "Error en la reserva", JOptionPane.WARNING_MESSAGE);
+            continue;  // Saltar a la siguiente iteración
         }
-        tblhotel.setModel(modelo);  // Actualizar el modelo de la tabla
+
+        // Agregar los datos al arreglo si cumplen las condiciones
+        ob[0] = listaReservas.get(i).getNombre();
+        ob[1] = listaReservas.get(i).getTelefono();
+        ob[2] = listaReservas.get(i).getCorreo();
+        ob[3] = listaReservas.get(i).getDireccion();
+        ob[4] = listaReservas.get(i).getFechaLlegada();
+        ob[5] = listaReservas.get(i).getFechaSalida();
+        ob[6] = tipoHabitacion;
+        ob[7] = numeroPersonas;
+
+        modelo.addRow(ob);  // Agregar la fila al modelo
     }
+
+    tblhotel.setModel(modelo);  // Actualizar el modelo de la tabla
+}
      
      void limpiarTabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -428,24 +452,40 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_TipoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Reserva reserva = new Reserva();
+        String nombre = Nombre.getText();
+        String telefono = Telefono.getText();
+        String correo = Correo.getText();
+        String direccion = Direccion.getText();
+        String fechaLlegada = FechaLlegada.getText();
+        String fechaSalida = FechaSalida.getText();
+        String tipoHabitacion = Tipo.getSelectedItem().toString(); // Obtener el tipo de habitación del ComboBox
+        int numeroPersonas = Integer.parseInt(NumeroPersonas.getText());
 
-        // Obtener los datos de los campos
-        reserva.setNombre(Nombre.getText());
-        reserva.setTelefono(Telefono.getText());
-        reserva.setCorreo(Correo.getText());
-        reserva.setDireccion(Direccion.getText());
-        reserva.setFechaLlegada(FechaLlegada.getText());
-        reserva.setFechaSalida(FechaSalida.getText());
-        reserva.setTipoHabitacion(Tipo.getSelectedItem().toString());
+        Reserva reserva;
 
-        // Agregar la reserva a la lista
-        listaReservas.add(reserva);
+    switch (tipoHabitacion) {
+        case "Individual":
+            reserva = new ReservaIndividual(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+            break;
+        case "Doble":
+            reserva = new ReservaDoble(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+            break;
+        case "Familiar":
+            reserva = new ReservaFamiliar(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+            break;
+        default:
+            throw new IllegalArgumentException("Tipo de habitación no válido: " + tipoHabitacion);
+    }
 
-        // Actualizar la tabla
-        limpiarTabla();
-        agregarTabla();
-        limpiarFormulario();        // TODO add your handling code here:
+    // Agregar la reserva a la lista
+    listaReservas.add(reserva);
+
+    // Actualizar la tabla
+    limpiarTabla();
+    agregarTabla();
+    limpiarFormulario();
+    
+    proceso.guardarDatos(listaReservas);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -455,6 +495,7 @@ public class Interfaz1 extends javax.swing.JFrame {
             if (dialogResult == JOptionPane.YES_OPTION) {
                 listaReservas.remove(fila);  // Eliminar la reserva de la lista
                 modelo.removeRow(fila);  // Eliminar la fila de la tabla
+                proceso.guardarDatos(listaReservas);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para eliminar.");
@@ -476,11 +517,14 @@ public class Interfaz1 extends javax.swing.JFrame {
             reserva.setFechaLlegada(FechaLlegada.getText());
             reserva.setFechaSalida(FechaSalida.getText());
             reserva.setTipoHabitacion(Tipo.getSelectedItem().toString());
+            reserva.setNumeroPersonas(Integer.parseInt(NumeroPersonas.getText()));
 
             // Actualizar la tabla
             limpiarTabla();
             agregarTabla();
             limpiarFormulario();
+             proceso.guardarDatos(listaReservas);
+            
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para modificar.");
         }
@@ -497,6 +541,7 @@ public class Interfaz1 extends javax.swing.JFrame {
             FechaLlegada.setText((String) tblhotel.getValueAt(fila, 4));
             FechaSalida.setText((String) tblhotel.getValueAt(fila, 5));
             Tipo.setSelectedItem(tblhotel.getValueAt(fila, 6));
+            NumeroPersonas.setText(String.valueOf(tblhotel.getValueAt(fila, 7)));
             btnRegistrar.setEnabled(false);        // TODO add your handling code here:
     }//GEN-LAST:event_tblhotelMouseClicked
 
@@ -514,31 +559,6 @@ public class Interfaz1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnreservaActionPerformed
     
-    class Reserva {
-        private String nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion;
-
-        // Getters y Setters
-        public String getNombre() { return nombre; }
-        public void setNombre(String nombre) { this.nombre = nombre; }
-
-        public String getTelefono() { return telefono; }
-        public void setTelefono(String telefono) { this.telefono = telefono; }
-
-        public String getCorreo() { return correo; }
-        public void setCorreo(String correo) { this.correo = correo; }
-
-        public String getDireccion() { return direccion; }
-        public void setDireccion(String direccion) { this.direccion = direccion; }
-
-        public String getFechaLlegada() { return fechaLlegada; }
-        public void setFechaLlegada(String fechaLlegada) { this.fechaLlegada = fechaLlegada; }
-
-        public String getFechaSalida() { return fechaSalida; }
-        public void setFechaSalida(String fechaSalida) { this.fechaSalida = fechaSalida; }
-
-        public String getTipoHabitacion() { return tipoHabitacion; }
-        public void setTipoHabitacion(String tipoHabitacion) { this.tipoHabitacion = tipoHabitacion; }
-    }
     /**
      * @param args the command line arguments
      */
