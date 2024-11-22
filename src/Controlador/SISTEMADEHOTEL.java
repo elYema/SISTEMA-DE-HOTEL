@@ -4,6 +4,8 @@
  */
 package Controlador;
 
+import Vista.Login;
+
 /**
  *
  * @author jheaf
@@ -14,6 +16,9 @@ public class SISTEMADEHOTEL {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Login  log=new Login();
+        log.setVisible(true);
         // TODO code application logic here
     }
     
