@@ -22,6 +22,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("TravelNest - OrgiaAnal.txt");
         this.setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     void Loguearse (){
