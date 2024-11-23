@@ -1,1 +1,2 @@
-asas,23232,pablo,222,22,22,Doble,2
+asas,22,asa,3232,22,22,Familiar,4
+asda,232,asa,222,22,22,Individual,1
