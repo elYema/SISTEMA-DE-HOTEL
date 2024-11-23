@@ -460,6 +460,12 @@ public class Interfaz1 extends javax.swing.JFrame {
         String fechaSalida = FechaSalida.getText();
         String tipoHabitacion = Tipo.getSelectedItem().toString(); // Obtener el tipo de habitación del ComboBox
         int numeroPersonas = Integer.parseInt(NumeroPersonas.getText());
+        
+        if (tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) {
+        JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.", 
+                                      "Error en la reserva", JOptionPane.WARNING_MESSAGE);
+        return; // No continuar si no se cumple la validación
+    }
 
         Reserva reserva;
 
@@ -533,16 +539,24 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tblhotelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblhotelMouseClicked
-        modelo=(DefaultTableModel) tblhotel.getModel();
-            Nombre.setText((String) tblhotel.getValueAt(fila, 0));
-            Telefono.setText((String) tblhotel.getValueAt(fila, 1));
-            Correo.setText((String) tblhotel.getValueAt(fila, 2));
-            Direccion.setText((String) tblhotel.getValueAt(fila, 3));
-            FechaLlegada.setText((String) tblhotel.getValueAt(fila, 4));
-            FechaSalida.setText((String) tblhotel.getValueAt(fila, 5));
-            Tipo.setSelectedItem(tblhotel.getValueAt(fila, 6));
-            NumeroPersonas.setText(String.valueOf(tblhotel.getValueAt(fila, 7)));
-            btnRegistrar.setEnabled(false);        // TODO add your handling code here:
+        fila = tblhotel.getSelectedRow();
+
+        if (fila >= 0) {
+        // Establecer los valores en los campos de texto correspondientes
+        Nombre.setText((String) tblhotel.getValueAt(fila, 0));
+        Telefono.setText((String) tblhotel.getValueAt(fila, 1));
+        Correo.setText((String) tblhotel.getValueAt(fila, 2));
+        Direccion.setText((String) tblhotel.getValueAt(fila, 3));
+        FechaLlegada.setText((String) tblhotel.getValueAt(fila, 4));
+        FechaSalida.setText((String) tblhotel.getValueAt(fila, 5));
+        Tipo.setSelectedItem(tblhotel.getValueAt(fila, 6));
+        NumeroPersonas.setText(String.valueOf(tblhotel.getValueAt(fila, 7)));
+
+        // Deshabilitar el botón "Registrar" para evitar duplicados
+        btnRegistrar.setEnabled(false);
+    } else {
+        JOptionPane.showMessageDialog(this, "Selecciona una fila válida.");
+    }
     }//GEN-LAST:event_tblhotelMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
