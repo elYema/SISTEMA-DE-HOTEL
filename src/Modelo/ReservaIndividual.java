@@ -13,7 +13,6 @@ public class ReservaIndividual extends Reserva {
         super(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
     }
 
-    @Override
     public double calcularPrecio() {
         // Precio fijo para una persona
         return 100.0;  // Precio para una persona
