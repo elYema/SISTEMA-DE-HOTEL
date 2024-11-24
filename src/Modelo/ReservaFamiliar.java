@@ -10,23 +10,17 @@ package Modelo;
  */
 public class ReservaFamiliar extends Reserva {
     
-    public ReservaFamiliar(String nombre, String telefono, String correo, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
-        super(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+    public ReservaFamiliar(Cliente cliente, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
+        super(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
     }
 
     @Override
-    public double calcularPrecio() {
+    public double calcularPrecioBase() {
         // Precio base para una reserva grupal, más un adicional por persona
         double precioBase = 200.0;
-        int personasAdicionales = getNumeroPersonas() - 2;  // Si son más de 2 personas, hay un costo adicional
+        int personasAdicionales = getNumeroPersonas() - 3;  // Si son más de 3 personas, hay un costo adicional
         double precioAdicional = personasAdicionales * 50.0;  // 50 más por cada persona extra
         return precioBase + precioAdicional;
-    }
-    
-    @Override
-    public double calcularPrecioConServicios() {
-        return calcularPrecio() + calcularCostoServicios();
-    }
+    } 
 }
-    
 

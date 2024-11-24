@@ -10,15 +10,13 @@ package Modelo;
  */
 public class CuentaBancaria {
     private String numeroCuenta;
-    private String banco;
     private String tipoCuenta; // Ejemplo: Ahorros, Corriente
-    private double saldo;
+    Cliente clie;
 
-    public CuentaBancaria(String numeroCuenta, String banco, String tipoCuenta, double saldo) {
+    public CuentaBancaria(String numeroCuenta,String tipoCuenta) {
         this.numeroCuenta = numeroCuenta;
-        this.banco = banco;
         this.tipoCuenta = tipoCuenta;
-        this.saldo = saldo;
+        this.clie = clie;
     }
 
     // Getters y Setters
@@ -30,14 +28,6 @@ public class CuentaBancaria {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-
     public String getTipoCuenta() {
         return tipoCuenta;
     }
@@ -45,12 +35,22 @@ public class CuentaBancaria {
     public void setTipoCuenta(String tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
     }
-
-    public double getSaldo() {
-        return saldo;
+    
+        public Cliente getClie() {
+        return clie;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public void setClie(Cliente clie) {
+        this.clie = clie;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "CuentaBancaria{" +
+                "numeroCuenta='" + numeroCuenta + '\'' +
+                ", tipoCuenta='" + tipoCuenta + '\'' +
+                '}';
     }
 }

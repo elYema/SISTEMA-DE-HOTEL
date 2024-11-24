@@ -19,7 +19,7 @@ public class Interfaz2 extends javax.swing.JFrame {
     public Interfaz2() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
-        setTitle("TravelNest - OrgiaAnal.txt");
+        setTitle("TravelNest");
         this.setLocationRelativeTo(null);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -480,8 +480,7 @@ public class Interfaz2 extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(14, 14, 14))
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         pack();

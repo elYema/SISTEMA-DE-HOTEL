@@ -7,8 +7,8 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Reserva extends Persona {
-    private double precioTotal;
+public abstract class Reserva {
+    private Cliente cliente; // Relación con Cliente (composición)
     private String direccion;
     private String fechaLlegada;
     private String fechaSalida;
@@ -16,8 +16,8 @@ public abstract class Reserva extends Persona {
     private int numeroPersonas;
     private List<ServicioAdicional> serviciosAdicionales; // Composición: lista de servicios adicionales
 
-    public Reserva(String nombre, String telefono, String correo, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
-        super(nombre, telefono, correo); // Llamada al constructor de la clase Persona
+    public Reserva(Cliente cliente, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
+        this.cliente = cliente; // Asignar el cliente a la reserva
         this.direccion = direccion;
         this.fechaLlegada = fechaLlegada;
         this.fechaSalida = fechaSalida;
@@ -27,15 +27,11 @@ public abstract class Reserva extends Persona {
     }
 
     // Método abstracto que debe ser implementado por las subclases
-    public abstract double calcularPrecio();
+    public abstract double calcularPrecioBase();
 
     // Métodos relacionados con los servicios adicionales
     public void agregarServicio(ServicioAdicional servicio) {
         this.serviciosAdicionales.add(servicio);
-    }
-
-    public void eliminarServicio(ServicioAdicional servicio) {
-        this.serviciosAdicionales.remove(servicio);
     }
 
     public List<ServicioAdicional> getServiciosAdicionales() {
@@ -47,21 +43,21 @@ public abstract class Reserva extends Persona {
     }
 
     // Método que calcula el precio total incluyendo los servicios adicionales
-    public double calcularPrecioConServicios() {
-        return calcularPrecio() + calcularCostoServicios();
+    public double calcularPrecioTotal() {
+        return calcularPrecioBase() + calcularCostoServicios();
     }
 
-    // Getters y Setters existentes
+    // Getters y Setters
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public String getDireccion() {
         return direccion;
-    }
-    
-     public double getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(double precioTotal) {
-        this.precioTotal = precioTotal;
     }
 
     public void setDireccion(String direccion) {
@@ -98,10 +94,6 @@ public abstract class Reserva extends Persona {
 
     public void setNumeroPersonas(int numeroPersonas) {
         this.numeroPersonas = numeroPersonas;
-        
     }
-    
-    
-    
-    
+  
 }

@@ -54,7 +54,7 @@
                                   <Component id="jLabel5" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                   <Component id="Correo" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="106" max="32767" attributes="0"/>
+                              <EmptySpace pref="109" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -98,7 +98,7 @@
                                       <Component id="adtransporte" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="141" max="32767" attributes="0"/>
+                              <EmptySpace pref="144" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -422,7 +422,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" pref="290" max="-2" attributes="0"/>
-                          <EmptySpace pref="599" max="32767" attributes="0"/>
+                          <EmptySpace pref="602" max="32767" attributes="0"/>
                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
@@ -501,9 +501,9 @@
                   <Component id="btninicio" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnreserva" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace pref="569" max="32767" attributes="0"/>
+                  <EmptySpace pref="526" max="32767" attributes="0"/>
                   <Component id="btnreserva1" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

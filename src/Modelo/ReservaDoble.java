@@ -8,22 +8,13 @@ package Modelo;
  *
  * @author Pablo
  */
-public class ReservaDoble extends Reserva{
-    
-      public ReservaDoble(String nombre, String telefono, String correo, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
-        super(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+public class ReservaDoble extends Reserva{  
+    public ReservaDoble(Cliente cliente, String direccion, String fechaLlegada, String fechaSalida, String tipoHabitacion, int numeroPersonas) {
+        super(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas); // Llamada al constructor de Reserva
     }
 
-
     @Override
-    public double calcularPrecio() {
-        // Precio fijo para dos personas
-        return 150.0;  // Precio para dos personas
+    public double calcularPrecioBase() {
+        return 100.0; // Precio fijo para una persona
     }
-    
-    @Override
-    public double calcularPrecioConServicios() {
-        return calcularPrecio() + calcularCostoServicios();
-    }
-    
 }

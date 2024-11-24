@@ -1,1 +1,2 @@
-asas,232,asasa,32232,23,232,Individual,1,185.0
+ada,123,ads,123,qew,qe,Individual,1,135.0,Desayuno:20.0;Transporte:15.0;
+ada,123,ad,123,ad,12,Doble,2,135.0,Desayuno:20.0;Transporte:15.0;

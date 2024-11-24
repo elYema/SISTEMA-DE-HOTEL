@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Modelo.Cliente;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,7 +19,7 @@ public class INICIO extends javax.swing.JFrame {
     public INICIO() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
-        setTitle("TravelNest - OrgiaAnal.txt");
+        setTitle("TravelNest");
         this.setLocationRelativeTo(null);
         initComponents();
         setLocationRelativeTo(this);
@@ -176,9 +177,13 @@ public class INICIO extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Interfaz2 Htl= new Interfaz2();
-        Htl.setVisible(true);
-        dispose();
+
+    Cliente.incrementarContador();
+
+    // Cambiar a la siguiente interfaz
+    Interfaz2 Htl = new Interfaz2();
+    Htl.setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class PAGO extends javax.swing.JFrame {
    private javax.swing.JTextField nombre;
    private javax.swing.JTextField pagoTotal;
+   private CuentaBancaria cuentaBancaria;
 
     /**
      * Creates new form PAGO
@@ -27,7 +28,7 @@ public class PAGO extends javax.swing.JFrame {
     public PAGO() {
        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
-        setTitle("TravelNest - OrgiaAnal.txt");
+        setTitle("TravelNest");
         this.setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
         initComponents();
@@ -74,9 +75,11 @@ public class PAGO extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         numtarj = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        cadu = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         Nomttl = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cadu = new javax.swing.JFormattedTextField();
+        TipCuenta = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,8 +188,6 @@ public class PAGO extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/card_credit_internet_lock_locked_padlock_security_icon_127043.png"))); // NOI18N
         jLabel11.setText("jLabel11");
 
-        cadu.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM y"))));
-
         jLabel13.setText("Nombre del titular");
 
         Nomttl.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +195,12 @@ public class PAGO extends javax.swing.JFrame {
                 NomttlActionPerformed(evt);
             }
         });
+
+        jLabel10.setText("Tipo de Cuenta");
+
+        cadu.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM y"))));
+
+        TipCuenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -208,7 +215,11 @@ public class PAGO extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(numtarj, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 266, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(TipCuenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(81, 81, 81))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,9 +227,12 @@ public class PAGO extends javax.swing.JFrame {
                     .addComponent(Nomttl, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(153, 153, 153))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,11 +248,15 @@ public class PAGO extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(numtarj, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(TipCuenta)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(numtarj, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
@@ -247,9 +265,9 @@ public class PAGO extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nomttl, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                    .addComponent(Nomttl, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,13 +366,13 @@ public class PAGO extends javax.swing.JFrame {
         Number number = format.parse(Pagottl.getText()); // Analizar el texto como número
         double pagoTotal = number.doubleValue(); // Convertir a double
 
-        // Resto del código para procesar el pago
         String CodigoSeguridad = ccv.getText();
         String numeroTarjeta = numtarj.getText();
         String fechaCaducidad = cadu.getText();
         String NombreTitular = Nomttl.getText();
+        String TipodeCuenta = TipCuenta.getSelectedItem().toString();
         
-        
+        cuentaBancaria = new CuentaBancaria(numeroTarjeta, TipodeCuenta);
    
 
 
@@ -367,6 +385,7 @@ public class PAGO extends javax.swing.JFrame {
                 + "Nombre del Titular: " + NombreTitular + "\n"
                 + "Últimos 4 Dígitos de la Tarjeta: **** **** **** " + ultimos4Digitos + "\n"
                 + "Fecha de Caducidad: " + fechaCaducidad + "\n"
+                + "Tipo de Cuenta: " + TipodeCuenta + "\n"
                 + "Pago Total: $" + String.format("%.2f", pagoTotal) + "\n";
 
         // Mostrar la factura
@@ -420,11 +439,13 @@ public class PAGO extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Nomttl;
     private javax.swing.JTextField Pagottl;
+    private javax.swing.JComboBox<String> TipCuenta;
     private javax.swing.JFormattedTextField cadu;
     private javax.swing.JTextField ccv;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

@@ -13,6 +13,7 @@ import Modelo.ReservaIndividual;
 import Modelo.ReservaFamiliar;
 import Modelo.ReservaDoble;
 import Controlador.Proceso;
+import Modelo.Cliente;
 import Modelo.ServicioAdicional;
 /**
  *
@@ -31,7 +32,7 @@ public class Interfaz1 extends javax.swing.JFrame {
     public Interfaz1() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
-        setTitle("TravelNest - OrgiaAnal.txt");
+        setTitle("TravelNest");
         this.setLocationRelativeTo(null);
         this.setLocationRelativeTo(null);
         initComponents();
@@ -43,36 +44,39 @@ public class Interfaz1 extends javax.swing.JFrame {
         
     }
     void agregarTabla() {
-    Object[] ob = new Object[8];  // Arreglo para almacenar los datos de la reserva
-    modelo.setRowCount(0);  // Limpiar el modelo de la tabla antes de agregar filas nuevas
-    
+    Object[] ob = new Object[8]; // Arreglo para almacenar los datos de la reserva
+    modelo.setRowCount(0); // Limpiar el modelo de la tabla antes de agregar filas nuevas
 
-    for (int i = 0; i < listaReservas.size(); i++) {
-        String tipoHabitacion = listaReservas.get(i).getTipoHabitacion();
-        int numeroPersonas = listaReservas.get(i).getNumeroPersonas();
+    for (Reserva reserva : listaReservas) {
+        String tipoHabitacion = reserva.getTipoHabitacion();
+        int numeroPersonas = reserva.getNumeroPersonas();
 
         // Verificar si el tipo de habitación es "Individual" y excede 1 persona
         if (tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) {
-            JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.", 
-                                          "Error en la reserva", JOptionPane.WARNING_MESSAGE);
-            continue;  // Saltar a la siguiente iteración
+            JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.",
+                    "Error en la reserva", JOptionPane.WARNING_MESSAGE);
+            continue; // Saltar a la siguiente iteración
         }
 
+        // Obtener los datos del cliente asociado a la reserva
+        Cliente cliente = reserva.getCliente();
+
         // Agregar los datos al arreglo si cumplen las condiciones
-        ob[0] = listaReservas.get(i).getNombre();
-        ob[1] = listaReservas.get(i).getTelefono();
-        ob[2] = listaReservas.get(i).getCorreo();
-        ob[3] = listaReservas.get(i).getDireccion();
-        ob[4] = listaReservas.get(i).getFechaLlegada();
-        ob[5] = listaReservas.get(i).getFechaSalida();
+        ob[0] = cliente.getNombre();
+        ob[1] = cliente.getTelefono();
+        ob[2] = cliente.getCorreo();
+        ob[3] = reserva.getDireccion();
+        ob[4] = reserva.getFechaLlegada();
+        ob[5] = reserva.getFechaSalida();
         ob[6] = tipoHabitacion;
         ob[7] = numeroPersonas;
 
-        modelo.addRow(ob);  // Agregar la fila al modelo
+        modelo.addRow(ob); // Agregar la fila al modelo
     }
 
-    tblhotel.setModel(modelo);  // Actualizar el modelo de la tabla
+    tblhotel.setModel(modelo); // Actualizar el modelo de la tabla
 }
+
      
      void limpiarTabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -245,7 +249,7 @@ public class Interfaz1 extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 599, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 602, Short.MAX_VALUE)
                         .addComponent(jLabel18)
                         .addGap(47, 47, 47))))
         );
@@ -337,9 +341,9 @@ public class Interfaz1 extends javax.swing.JFrame {
                 .addComponent(btninicio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 569, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                 .addComponent(btnreserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(70, 70, 70))
         );
 
         jLabel13.setText("Servicios Adicionales:");
@@ -383,7 +387,7 @@ public class Interfaz1 extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(106, Short.MAX_VALUE))
+                                .addContainerGap(109, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -415,7 +419,7 @@ public class Interfaz1 extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(adspa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(adtransporte, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addContainerGap(141, Short.MAX_VALUE))))
+                                .addContainerGap(144, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -507,7 +511,9 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_TipoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        try {
+ try {
+        Cliente.incrementarReservas();
+        
         // Capturar los datos del formulario
         String nombre = Nombre.getText().trim();
         String telefono = Telefono.getText().trim();
@@ -517,8 +523,6 @@ public class Interfaz1 extends javax.swing.JFrame {
         String fechaSalida = FechaSalida.getText().trim();
         String tipoHabitacion = Tipo.getSelectedItem().toString().trim(); // Obtener el tipo de habitación del ComboBox
         String numeroPersonasTexto = NumeroPersonas.getText().trim();
-        
-    
 
         // Validar que ningún campo esté vacío
         if (nombre.isEmpty() || telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() ||
@@ -541,17 +545,20 @@ public class Interfaz1 extends javax.swing.JFrame {
             return; // No continuar si no se cumple la validación
         }
 
+        // Crear el cliente
+        Cliente cliente = new Cliente(nombre, telefono, correo, "C" + telefono.hashCode());
+
         // Crear la reserva según el tipo de habitación
         Reserva reserva;
         switch (tipoHabitacion) {
             case "Individual":
-                reserva = new ReservaIndividual(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                reserva = new ReservaIndividual(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                 break;
             case "Doble":
-                reserva = new ReservaDoble(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                reserva = new ReservaDoble(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                 break;
             case "Familiar":
-                reserva = new ReservaFamiliar(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                reserva = new ReservaFamiliar(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                 break;
             default:
                 throw new IllegalArgumentException("Tipo de habitación no válido: " + tipoHabitacion);
@@ -569,7 +576,7 @@ public class Interfaz1 extends javax.swing.JFrame {
         }
 
         // Mostrar el precio total y confirmar la reserva
-        JOptionPane.showMessageDialog(null, "Reserva registrada con éxito.\nPrecio total: $" + reserva.calcularPrecioConServicios(), 
+        JOptionPane.showMessageDialog(null, "Reserva registrada con éxito.\nPrecio total: $" + reserva.calcularPrecioTotal(), 
                                       "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
         // Agregar la reserva a la lista
@@ -582,6 +589,7 @@ public class Interfaz1 extends javax.swing.JFrame {
 
         // Guardar los datos en el proceso
         proceso.guardarDatos(listaReservas);
+        
 
     } catch (IllegalArgumentException e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -605,31 +613,48 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        fila = tblhotel.getSelectedRow();
-        if (fila >= 0) {
-            // Modificar los datos de la reserva seleccionada
-            Reserva reserva = listaReservas.get(fila);
+    fila = tblhotel.getSelectedRow();
+    if (fila >= 0) {
+        // Obtener la reserva seleccionada
+        Reserva reserva = listaReservas.get(fila);
 
-            reserva.setNombre(Nombre.getText());
-            reserva.setTelefono(Telefono.getText());
-            reserva.setCorreo(Correo.getText());
-            reserva.setDireccion(Direccion.getText());
-            reserva.setFechaLlegada(FechaLlegada.getText());
-            reserva.setFechaSalida(FechaSalida.getText());
-            reserva.setTipoHabitacion(Tipo.getSelectedItem().toString());
-            reserva.setNumeroPersonas(Integer.parseInt(NumeroPersonas.getText()));
+        // Obtener el cliente asociado a la reserva
+        Cliente cliente = reserva.getCliente();
 
-            // Actualizar la tabla
-            limpiarTabla();
-            agregarTabla();
-            limpiarFormulario();
-             proceso.guardarDatos(listaReservas);
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para modificar.");
+        // Modificar los datos del cliente
+        cliente.setNombre(Nombre.getText());
+        cliente.setTelefono(Telefono.getText());
+        cliente.setCorreo(Correo.getText());
+
+        // Modificar los datos de la reserva
+        reserva.setDireccion(Direccion.getText());
+        reserva.setFechaLlegada(FechaLlegada.getText());
+        reserva.setFechaSalida(FechaSalida.getText());
+        reserva.setTipoHabitacion(Tipo.getSelectedItem().toString());
+        reserva.setNumeroPersonas(Integer.parseInt(NumeroPersonas.getText()));
+
+        // Validación adicional para habitaciones individuales
+        if (reserva.getTipoHabitacion().equalsIgnoreCase("Individual") && reserva.getNumeroPersonas() > 1) {
+            JOptionPane.showMessageDialog(this, "Una habitación individual no puede tener más de 1 persona.",
+                    "Error de validación", JOptionPane.WARNING_MESSAGE);
+            return; // Detener el proceso de modificación si la validación falla
         }
-        limpiarFormulario();  
-        btnRegistrar.setEnabled(true);        // TODO add your handling code here:
+
+        // Actualizar la tabla
+        limpiarTabla();
+        agregarTabla();
+        limpiarFormulario();
+
+        // Guardar los datos actualizados
+        proceso.guardarDatos(listaReservas);
+
+        JOptionPane.showMessageDialog(this, "Reserva modificada correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para modificar.");
+    }
+
+    limpiarFormulario();
+    btnRegistrar.setEnabled(true);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tblhotelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblhotelMouseClicked
@@ -670,24 +695,25 @@ public class Interfaz1 extends javax.swing.JFrame {
 
     private void btnpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagoActionPerformed
          PAGO pay = new PAGO();
+         int filaSeleccionada = tblhotel.getSelectedRow();
 
-    // Obtener la fila seleccionada
-    int filaSeleccionada = tblhotel.getSelectedRow();
+         // Obtener la reserva correspondiente desde la lista
+         Reserva reservaSeleccionada = listaReservas.get(filaSeleccionada);
 
-    // Obtener la reserva correspondiente desde la lista
-    Reserva reservaSeleccionada = listaReservas.get(filaSeleccionada);
+         // Obtener el cliente asociado a la reserva
+         Cliente cliente = reservaSeleccionada.getCliente();
 
-    // Calcular el pago total directamente desde el objeto Reserva
-    String nombreTitular = reservaSeleccionada.getNombre();
-    double pagoTotal = reservaSeleccionada.getPrecioTotal();
+         // Calcular el pago total directamente desde el objeto Reserva
+         String nombreTitular = cliente.getNombre(); // Nombre del cliente titular
+         double pagoTotal = reservaSeleccionada.calcularPrecioTotal(); // Precio total calculado dinámicamente
 
-    // Configurar los valores en la ventana de pago
-     pay.setNombreTitular(nombreTitular);
-     pay.setPagoTotal(pagoTotal);
+         // Configurar los valores en la ventana de pago
+         pay.setNombreTitular(nombreTitular);
+         pay.setPagoTotal(pagoTotal);
 
-    // Mostrar la ventana de pago
-    pay.setVisible(true);
-    dispose();
+         // Mostrar la ventana de pago
+         pay.setVisible(true);
+         dispose();
     }//GEN-LAST:event_btnpagoActionPerformed
 
     private void btnreserva1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreserva1ActionPerformed

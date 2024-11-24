@@ -8,6 +8,8 @@ import Modelo.Reserva;
 import Modelo.ReservaIndividual;
 import Modelo.ReservaDoble;
 import Modelo.ReservaFamiliar;
+import Modelo.Cliente;
+import Modelo.Hotel;
 import Modelo.ServicioAdicional;
 
 import java.io.*;
@@ -16,22 +18,31 @@ import javax.swing.table.DefaultTableModel;
 
 public class Proceso {
     private File archivo = new File("datos.txt");
-// Método para guardar todos los datos en el archivo
-public void guardarDatos(ArrayList<Reserva> listaReservas) {
+
+    // Método para guardar todos los datos en el archivo
+    public void guardarDatos(ArrayList<Reserva> listaReservas) {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
         for (Reserva reserva : listaReservas) {
-            double precioTotal = reserva.calcularPrecioConServicios(); // Calcular el precio total
-            
-            // Guardar todos los datos de la reserva, incluyendo el precio total
-            String linea = reserva.getNombre() + "," +
-                           reserva.getTelefono() + "," +
-                           reserva.getCorreo() + "," +
+            Cliente cliente = reserva.getCliente(); // Obtener cliente asociado
+
+            // Obtener los servicios adicionales en formato texto
+            StringBuilder serviciosTexto = new StringBuilder();
+            for (ServicioAdicional servicio : reserva.getServiciosAdicionales()) {
+                serviciosTexto.append(servicio.getNombre()).append(":").append(servicio.getCosto()).append(";");
+            }
+
+            // Formar la línea a guardar
+            String linea = cliente.getNombre() + "," +
+                           cliente.getTelefono() + "," +
+                           cliente.getCorreo() + "," +
                            reserva.getDireccion() + "," +
                            reserva.getFechaLlegada() + "," +
                            reserva.getFechaSalida() + "," +
                            reserva.getTipoHabitacion() + "," +
                            reserva.getNumeroPersonas() + "," +
-                           precioTotal; // Agregar precio total
+                           reserva.calcularPrecioTotal() + "," +
+                           serviciosTexto.toString(); // Agregar los servicios adicionales
+
             bw.write(linea);
             bw.newLine();
         }
@@ -40,12 +51,11 @@ public void guardarDatos(ArrayList<Reserva> listaReservas) {
     }
 }
 
-
     // Método para cargar datos desde el archivo
 public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel modelo) {
     listaReservas.clear();
     modelo.setRowCount(0); // Limpiar la tabla
-
+    Hotel.ingresosTotales = 0.0;
     if (!archivo.exists()) {
         return; // Si el archivo no existe, salir
     }
@@ -55,7 +65,7 @@ public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel mode
         while ((linea = br.readLine()) != null) {
             String[] datos = linea.split(",");
 
-            // Crear la reserva a partir de los datos leídos
+            // Leer los datos del cliente y la reserva
             String nombre = datos[0];
             String telefono = datos[1];
             String correo = datos[2];
@@ -65,27 +75,57 @@ public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel mode
             String tipoHabitacion = datos[6];
             int numeroPersonas = Integer.parseInt(datos[7]);
             double precioTotal = Double.parseDouble(datos[8]);
+            String serviciosTexto = datos.length > 9 ? datos[9] : ""; // Servicios adicionales (si existen)
 
+            // Crear el cliente
+            Cliente cliente = new Cliente(nombre, telefono, correo, "C" + telefono.hashCode());
+
+            // Crear la reserva según el tipo de habitación
             Reserva reserva;
             switch (tipoHabitacion) {
                 case "Individual":
-                    reserva = new ReservaIndividual(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                    reserva = new ReservaIndividual(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                     break;
                 case "Doble":
-                    reserva = new ReservaDoble(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                    reserva = new ReservaDoble(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                     break;
                 case "Familiar":
-                    reserva = new ReservaFamiliar(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
+                    reserva = new ReservaFamiliar(cliente, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
                     break;
                 default:
                     throw new IllegalArgumentException("Tipo de habitación desconocido: " + tipoHabitacion);
             }
 
-            reserva.setPrecioTotal(precioTotal); // Establecer el precio total
+            // Cargar los servicios adicionales
+            if (!serviciosTexto.isEmpty()) {
+                String[] servicios = serviciosTexto.split(";");
+                for (String servicio : servicios) {
+                    String[] detalles = servicio.split(":");
+                    if (detalles.length == 2) {
+                        String nombreServicio = detalles[0];
+                        double costoServicio = Double.parseDouble(detalles[1]);
+                        reserva.agregarServicio(new ServicioAdicional(nombreServicio, costoServicio));
+                    }
+                }
+            }
+
             listaReservas.add(reserva); // Agregar a la lista
 
+            // Sumar el precio total de la reserva a los ingresos totales del hotel
+            Hotel.agregarIngreso(precioTotal);
+
             // Agregar datos al modelo de la tabla
-            modelo.addRow(new Object[]{nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas, precioTotal});
+            modelo.addRow(new Object[]{
+                    cliente.getNombre(),
+                    cliente.getTelefono(),
+                    cliente.getCorreo(),
+                    direccion,
+                    fechaLlegada,
+                    fechaSalida,
+                    tipoHabitacion,
+                    numeroPersonas,
+                    precioTotal
+            });
         }
     } catch (IOException e) {
         System.err.println("Error al cargar los datos: " + e.getMessage());
