@@ -4,17 +4,44 @@
  */
 package Vista;
 
+import javax.swing.ImageIcon;
+import Vista.Interfaz1;
+import Controlador.Proceso;
+import Modelo.CuentaBancaria;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jheaf
  */
 public class PAGO extends javax.swing.JFrame {
+   private javax.swing.JTextField nombre;
+   private javax.swing.JTextField pagoTotal;
 
     /**
      * Creates new form PAGO
      */
     public PAGO() {
+       ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
+        this.setIconImage(icon.getImage());
+        setTitle("TravelNest - OrgiaAnal.txt");
+        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         initComponents();
+        
+        setLocationRelativeTo(this);
+        
+    }
+    
+    public void setNombreTitular(String nombre) {
+        Nomttl.setText(nombre);
+    }
+
+    public void setPagoTotal(double total) {
+        Pagottl.setText(String.format("%.2f", total));
     }
 
     /**
@@ -36,57 +63,67 @@ public class PAGO extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        Pagottl = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
+        ccv = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        numtarj = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        cadu = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Nomttl = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(241, 237, 237));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Termina el pago");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/TravelNest Pago.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel3.setFont(new java.awt.Font("Dubai Medium", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("TravelNest");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Detalle de la reserva");
 
         jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pago total");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Pagar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Tipo de habitación");
+
+        Pagottl.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        Pagottl.setForeground(new java.awt.Color(255, 255, 255));
+        Pagottl.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Pagottl.setEnabled(false);
+        Pagottl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagottlActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,14 +134,19 @@ public class PAGO extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(Pagottl, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -114,7 +156,9 @@ public class PAGO extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel12)
-                .addGap(137, 137, 137)
+                .addGap(85, 85, 85)
+                .addComponent(Pagottl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
@@ -129,45 +173,27 @@ public class PAGO extends javax.swing.JFrame {
 
         jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Fecha de caducidad");
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Código de seguridad");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/credit_card_icon_129121.png"))); // NOI18N
         jLabel8.setText("jLabel8");
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Número de tarjeta de crédito");
-
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/card_credit_internet_lock_locked_padlock_security_icon_127043.png"))); // NOI18N
         jLabel11.setText("jLabel11");
 
-        jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM y"))));
+        cadu.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM y"))));
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Nombre del titular");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButton2.setText("jButton2");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        Nomttl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomttlActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -181,51 +207,39 @@ public class PAGO extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(38, 38, 38))
+                    .addComponent(numtarj, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 266, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Nomttl, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(153, 153, 153))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(471, 471, 471))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ccv, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(numtarj, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,18 +247,27 @@ public class PAGO extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadu, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nomttl, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ccv, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(45, 45, 45))
         );
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/return.png"))); // NOI18N
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,6 +291,10 @@ public class PAGO extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(60, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +314,9 @@ public class PAGO extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -303,6 +332,55 @@ public class PAGO extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PagottlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagottlActionPerformed
+ 
+    }//GEN-LAST:event_PagottlActionPerformed
+
+    private void NomttlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomttlActionPerformed
+
+    }//GEN-LAST:event_NomttlActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try {
+        // Crear un formato de número para la configuración local
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+        Number number = format.parse(Pagottl.getText()); // Analizar el texto como número
+        double pagoTotal = number.doubleValue(); // Convertir a double
+
+        // Resto del código para procesar el pago
+        String CodigoSeguridad = ccv.getText();
+        String numeroTarjeta = numtarj.getText();
+        String fechaCaducidad = cadu.getText();
+        String NombreTitular = Nomttl.getText();
+        
+        
+   
+
+
+        // Obtener últimos 4 dígitos de la tarjeta
+        String ultimos4Digitos = numeroTarjeta.substring(numeroTarjeta.length() - 4);
+
+        // Crear factura
+        String factura = "Factura de Pago\n"
+                + "-------------------------\n"
+                + "Nombre del Titular: " + NombreTitular + "\n"
+                + "Últimos 4 Dígitos de la Tarjeta: **** **** **** " + ultimos4Digitos + "\n"
+                + "Fecha de Caducidad: " + fechaCaducidad + "\n"
+                + "Pago Total: $" + String.format("%.2f", pagoTotal) + "\n";
+
+        // Mostrar la factura
+        JOptionPane.showMessageDialog(this, factura, "Factura", JOptionPane.INFORMATION_MESSAGE);
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Error al procesar el pago. Verifique los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+    }       
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       this.dispose();
+       new Interfaz1().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,9 +418,12 @@ public class PAGO extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Nomttl;
+    private javax.swing.JTextField Pagottl;
+    private javax.swing.JFormattedTextField cadu;
+    private javax.swing.JTextField ccv;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -358,12 +439,9 @@ public class PAGO extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField numtarj;
     // End of variables declaration//GEN-END:variables
 }

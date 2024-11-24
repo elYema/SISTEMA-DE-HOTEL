@@ -14,10 +14,16 @@ public class ReservaDoble extends Reserva{
         super(nombre, telefono, correo, direccion, fechaLlegada, fechaSalida, tipoHabitacion, numeroPersonas);
     }
 
+
     @Override
     public double calcularPrecio() {
         // Precio fijo para dos personas
         return 150.0;  // Precio para dos personas
+    }
+    
+    @Override
+    public double calcularPrecioConServicios() {
+        return calcularPrecio() + calcularCostoServicios();
     }
     
 }

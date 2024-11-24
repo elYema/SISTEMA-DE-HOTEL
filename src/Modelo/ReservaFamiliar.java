@@ -22,6 +22,11 @@ public class ReservaFamiliar extends Reserva {
         double precioAdicional = personasAdicionales * 50.0;  // 50 más por cada persona extra
         return precioBase + precioAdicional;
     }
+    
+    @Override
+    public double calcularPrecioConServicios() {
+        return calcularPrecio() + calcularCostoServicios();
+    }
 }
     
 

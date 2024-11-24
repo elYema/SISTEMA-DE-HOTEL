@@ -67,6 +67,11 @@
                       </Group>
                   </Group>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="109" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -93,7 +98,9 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="113" max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,9 +110,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Termina el pago"/>
           </Properties>
@@ -122,9 +126,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dubai Medium" size="24" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="TravelNest"/>
           </Properties>
@@ -144,15 +145,23 @@
                       <Component id="jButton1" min="-2" pref="146" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="265" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jSeparator1" min="-2" pref="265" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" pref="80" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="Pagottl" min="-2" pref="154" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -166,7 +175,9 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="Pagottl" min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -182,9 +193,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Detalle de la reserva"/>
               </Properties>
@@ -204,9 +212,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Pago total"/>
               </Properties>
             </Component>
@@ -223,14 +228,29 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pagar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Tipo de habitaci&#xf3;n"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="Pagottl">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Verdana" size="36" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PagottlActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -252,65 +272,48 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel9" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                          <Component id="numtarj" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="38" pref="266" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel13" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                          <Component id="Nomttl" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" pref="121" max="-2" attributes="0"/>
-                          <Component id="jFormattedTextField1" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Component id="cadu" min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel7" min="-2" pref="123" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="jLabel11" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel7" min="-2" pref="123" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="471" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ccv" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numtarj" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -319,17 +322,17 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jFormattedTextField1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="cadu" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="Nomttl" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="92" max="32767" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" pref="22" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ccv" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
@@ -351,26 +354,15 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="ccv">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Fecha de caducidad"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo de seguridad"/>
               </Properties>
             </Component>
@@ -384,18 +376,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="N&#xfa;mero de tarjeta de cr&#xe9;dito"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="numtarj">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -405,11 +389,8 @@
                 <Property name="text" type="java.lang.String" value="jLabel11"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+            <Component class="javax.swing.JFormattedTextField" name="cadu">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="MM y" subtype="-1" type="1"/>
                 </Property>
@@ -417,41 +398,30 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Nombre del titular"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="Nomttl">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NomttlActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton2"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JPanel" name="jPanel4">
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IMAGENES/return.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Volver"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
