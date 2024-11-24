@@ -133,6 +133,7 @@ public class Interfaz1 extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         btninicio = new javax.swing.JButton();
         btnreserva = new javax.swing.JButton();
+        btnreserva1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         adspa = new javax.swing.JRadioButton();
         adesayuno = new javax.swing.JRadioButton();
@@ -309,6 +310,13 @@ public class Interfaz1 extends javax.swing.JFrame {
             }
         });
 
+        btnreserva1.setText("Salir");
+        btnreserva1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreserva1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -317,6 +325,7 @@ public class Interfaz1 extends javax.swing.JFrame {
             .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
             .addComponent(btninicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnreserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnreserva1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +337,9 @@ public class Interfaz1 extends javax.swing.JFrame {
                 .addComponent(btninicio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 630, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 569, Short.MAX_VALUE)
+                .addComponent(btnreserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         jLabel13.setText("Servicios Adicionales:");
@@ -678,6 +689,11 @@ public class Interfaz1 extends javax.swing.JFrame {
     pay.setVisible(true);
     dispose();
     }//GEN-LAST:event_btnpagoActionPerformed
+
+    private void btnreserva1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreserva1ActionPerformed
+     this.dispose();
+       new Login().setVisible(true);
+    }//GEN-LAST:event_btnreserva1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -732,6 +748,7 @@ public class Interfaz1 extends javax.swing.JFrame {
     private javax.swing.JButton btninicio;
     private javax.swing.JToggleButton btnpago;
     private javax.swing.JButton btnreserva;
+    private javax.swing.JButton btnreserva1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
