@@ -173,11 +173,11 @@ public class Administracion extends javax.swing.JFrame {
       int numeroReservas = Cliente.getContadoReservas();
       double ingresosTotales = Hotel.getIngresosTotales();
 
-      // Crea un modelo de tabla con la información
+     
       DefaultTableModel model = (DefaultTableModel) tbladmin.getModel();
-      model.setRowCount(0); // Limpia la tabla para evitar duplicados
+      model.setRowCount(0); 
 
-    // Agrega una fila con el número de clientes
+ 
     model.addRow(new Object[]{numeroClientes, numeroReservas, 50, ingresosTotales}); 
     }//GEN-LAST:event_tbladminAncestorAdded
 
