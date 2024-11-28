@@ -14,10 +14,12 @@ import Modelo.ServicioAdicional;
 
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Proceso {
     private File archivo = new File("datos.txt");
+    private File archivo2 = new File("administracion.txt");
 
     // Método para guardar todos los datos en el archivo
 public void guardarDatos(ArrayList<Reserva> listaReservas) {
@@ -56,7 +58,6 @@ public void guardarDatos(ArrayList<Reserva> listaReservas) {
 public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel modelo) {
     listaReservas.clear();
     modelo.setRowCount(0); // Limpiar la tabla
-    Hotel.ingresosTotales = 0.0;
     if (!archivo.exists()) {
         return; // Si el archivo no existe, salir
     }
@@ -132,4 +133,55 @@ public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel mode
         System.err.println("Error al cargar los datos: " + e.getMessage());
     }
 }
+
+    public void guardarDatosTabla(JTable tbladmin) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo2))) {
+            DefaultTableModel model = (DefaultTableModel) tbladmin.getModel();
+
+            if (model.getRowCount() > 0) { // Verificar si hay filas
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    Object cell = model.getValueAt(0, j); // Guardar solo la fila 0
+                    writer.write(cell != null ? cell.toString() : ""); // Manejo de valores nulos
+                    if (j < model.getColumnCount() - 1) {
+                        writer.write(","); // Separador entre columnas
+                    }
+                }
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Método para cargar UNA fila al JTable
+    public void cargarDatosTabla(JTable tabla) {
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de cargar
+
+        if (archivo2.exists()) { // Verificar si el archivo existe
+            try (BufferedReader br = new BufferedReader(new FileReader(archivo2))) {
+                String linea = br.readLine(); // Leer solo una línea
+                if (linea != null && !linea.isEmpty()) { // Validar contenido
+                    String[] datos = linea.split(","); // Separar por comas
+                    if (datos.length == 4) { // Validar columnas
+                        model.addRow(new Object[]{
+                            Integer.parseInt(datos[0]), // Número de clientes
+                            Integer.parseInt(datos[1]), // Número de reservas
+                            Integer.parseInt(datos[2]), // Capacidad máxima
+                            Double.parseDouble(datos[3]) // Ingresos totales
+                        });
+                    }
+                }
+            } catch (IOException | NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Crear archivo con valores iniciales si no existe
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo2))) {
+                writer.write("0,0,50,0.0"); // Valores iniciales
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

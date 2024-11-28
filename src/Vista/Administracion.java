@@ -8,13 +8,14 @@ import Modelo.Cliente;
 import Modelo.Hotel;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import Controlador.Proceso;
 
 /**
  *
  * @author Pablo
  */
 public class Administracion extends javax.swing.JFrame {
-
+   private Proceso proceso = new Proceso();
     /**
      * Creates new form Empleado
      */
@@ -25,6 +26,36 @@ public class Administracion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         initComponents();
         setLocationRelativeTo(this);
+        proceso.cargarDatosTabla(tbladmin);
+        agregarTabla();
+    }
+    
+    
+    void agregarTabla() {
+    DefaultTableModel model = (DefaultTableModel) tbladmin.getModel(); // Modelo de la tabla
+    model.setRowCount(0); // Limpiar la tabla antes de agregar datos
+
+    // Crear un objeto con las columnas requeridas
+    Object[] ob = new Object[4]; // Ajustado a las columnas requeridas
+
+    // Calcular los datos necesarios
+    int numeroClientes = Cliente.getContadorAcciones(); // NÃºmero total de reservas (clientes)
+    int numeroReservas = Cliente.getContadoReservas(); // Mismo valor si cada reserva cuenta un cliente
+    int capacidadMaxima = 50; // Capacidad fija
+    double ingresosTotales = Hotel.getIngresosTotales();
+
+    // Asignar valores a las columnas
+    ob[0] = numeroClientes;
+    ob[1] = numeroReservas;
+    ob[2] = capacidadMaxima;
+    ob[3] = ingresosTotales;
+
+    // Agregar fila al modelo
+    model.addRow(ob);
+
+    tbladmin.setModel(model); // Actualizar la tabla
+    
+     proceso.guardarDatosTabla(tbladmin);
     }
 
     /**
@@ -169,16 +200,7 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tbladminAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbladminAncestorAdded
-      int numeroClientes = Cliente.getContadorAcciones();
-      int numeroReservas = Cliente.getContadoReservas();
-      double ingresosTotales = Hotel.getIngresosTotales();
 
-     
-      DefaultTableModel model = (DefaultTableModel) tbladmin.getModel();
-      model.setRowCount(0); 
-
- 
-    model.addRow(new Object[]{numeroClientes, numeroReservas, 50, ingresosTotales}); 
     }//GEN-LAST:event_tbladminAncestorAdded
 
     /**

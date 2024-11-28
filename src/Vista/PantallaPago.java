@@ -5,7 +5,7 @@
 package Vista;
 
 import javax.swing.ImageIcon;
-import Vista.SeleccionHabitacion;
+import Vista.Registro;
 import Controlador.Proceso;
 import Modelo.CuentaBancaria;
 import java.text.NumberFormat;
@@ -398,7 +398,7 @@ public class PantallaPago extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.dispose();
-       new SeleccionHabitacion().setVisible(true);
+       new Registro().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
