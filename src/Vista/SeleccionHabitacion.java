@@ -19,7 +19,7 @@ import Modelo.ServicioAdicional;
  *
  * @author jheaf
  */
-public class Interfaz1 extends javax.swing.JFrame {
+public class SeleccionHabitacion extends javax.swing.JFrame {
     
     ArrayList<Reserva> listaReservas;  // Lista para almacenar las reservas
     DefaultTableModel modelo;  // Modelo para la tabla
@@ -29,7 +29,7 @@ public class Interfaz1 extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz1
      */
-    public Interfaz1() {
+    public SeleccionHabitacion() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
         setTitle("TravelNest");
@@ -145,7 +145,6 @@ public class Interfaz1 extends javax.swing.JFrame {
         btnpago = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 900));
         setSize(new java.awt.Dimension(1100, 900));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -684,7 +683,7 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
-        Interfaz2 vIn= new Interfaz2();
+        Registro vIn= new Registro();
         vIn.setVisible(true);
         dispose();
     }//GEN-LAST:event_btninicioActionPerformed
@@ -694,7 +693,7 @@ public class Interfaz1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnreservaActionPerformed
 
     private void btnpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagoActionPerformed
-         PAGO pay = new PAGO();
+         PantallaPago pay = new PantallaPago();
          int filaSeleccionada = tblhotel.getSelectedRow();
 
          // Obtener la reserva correspondiente desde la lista
@@ -738,20 +737,21 @@ public class Interfaz1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionHabitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionHabitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionHabitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionHabitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz1().setVisible(true);
+                new SeleccionHabitacion().setVisible(true);
             }
         });
     }

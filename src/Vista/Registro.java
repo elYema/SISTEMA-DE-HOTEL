@@ -4,19 +4,19 @@
  */
 package Vista;
 
-import Vista.Interfaz1;
+import Vista.SeleccionHabitacion;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author jheaf
  */
-public class Interfaz2 extends javax.swing.JFrame {
+public class Registro extends javax.swing.JFrame {
 
     /**
      * Creates new form Interfaz2
      */
-    public Interfaz2() {
+    public Registro() {
         ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
         setTitle("TravelNest");
@@ -499,19 +499,19 @@ public class Interfaz2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnreservaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Interfaz1 vRv= new Interfaz1();
+        SeleccionHabitacion vRv= new SeleccionHabitacion();
         vRv.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Interfaz1 vRv= new Interfaz1();
+        SeleccionHabitacion vRv= new SeleccionHabitacion();
         vRv.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Interfaz1 vRv= new Interfaz1();
+        SeleccionHabitacion vRv= new SeleccionHabitacion();
         vRv.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -538,20 +538,21 @@ public class Interfaz2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz2().setVisible(true);
+                new Registro().setVisible(true);
             }
         });
     }

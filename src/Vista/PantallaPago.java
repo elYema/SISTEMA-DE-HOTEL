@@ -5,7 +5,7 @@
 package Vista;
 
 import javax.swing.ImageIcon;
-import Vista.Interfaz1;
+import Vista.SeleccionHabitacion;
 import Controlador.Proceso;
 import Modelo.CuentaBancaria;
 import java.text.NumberFormat;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author jheaf
  */
-public class PAGO extends javax.swing.JFrame {
+public class PantallaPago extends javax.swing.JFrame {
    private javax.swing.JTextField nombre;
    private javax.swing.JTextField pagoTotal;
    private CuentaBancaria cuentaBancaria;
@@ -25,7 +25,7 @@ public class PAGO extends javax.swing.JFrame {
     /**
      * Creates new form PAGO
      */
-    public PAGO() {
+    public PantallaPago() {
        ImageIcon icon = new ImageIcon(getClass().getResource("/IMAGENES/TravelNest Login Photo (1).png"));
         this.setIconImage(icon.getImage());
         setTitle("TravelNest");
@@ -398,7 +398,7 @@ public class PAGO extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.dispose();
-       new Interfaz1().setVisible(true);
+       new SeleccionHabitacion().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -418,20 +418,21 @@ public class PAGO extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PAGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PAGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PAGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PAGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PAGO().setVisible(true);
+                new PantallaPago().setVisible(true);
             }
         });
     }
