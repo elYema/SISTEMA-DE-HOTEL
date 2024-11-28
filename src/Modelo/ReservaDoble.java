@@ -15,6 +15,6 @@ public class ReservaDoble extends Reserva{
 
     @Override
     public double calcularPrecioBase() {
-        return 100.0; // Precio fijo para una persona
+        return 160.0; // Precio fijo para una persona
     }
 }

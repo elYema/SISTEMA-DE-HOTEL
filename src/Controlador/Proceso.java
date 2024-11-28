@@ -20,15 +20,15 @@ public class Proceso {
     private File archivo = new File("datos.txt");
 
     // Método para guardar todos los datos en el archivo
-    public void guardarDatos(ArrayList<Reserva> listaReservas) {
+public void guardarDatos(ArrayList<Reserva> listaReservas) {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
         for (Reserva reserva : listaReservas) {
             Cliente cliente = reserva.getCliente(); // Obtener cliente asociado
 
-            // Obtener los servicios adicionales en formato texto
-            StringBuilder serviciosTexto = new StringBuilder();
+            // Construir los servicios adicionales en formato texto
+            String serviciosTexto = "";
             for (ServicioAdicional servicio : reserva.getServiciosAdicionales()) {
-                serviciosTexto.append(servicio.getNombre()).append(":").append(servicio.getCosto()).append(";");
+                serviciosTexto += servicio.getNombre() + ":" + servicio.getCosto() + ";"; // Concatenar cada servicio
             }
 
             // Formar la línea a guardar
@@ -41,15 +41,16 @@ public class Proceso {
                            reserva.getTipoHabitacion() + "," +
                            reserva.getNumeroPersonas() + "," +
                            reserva.calcularPrecioTotal() + "," +
-                           serviciosTexto.toString(); // Agregar los servicios adicionales
+                           serviciosTexto; // Agregar los servicios adicionales
 
             bw.write(linea);
-            bw.newLine();
+            bw.newLine(); // Agregar salto de línea
         }
     } catch (IOException e) {
         System.err.println("Error al guardar los datos: " + e.getMessage());
     }
 }
+    
 
     // Método para cargar datos desde el archivo
 public void cargarDatos(ArrayList<Reserva> listaReservas, DefaultTableModel modelo) {

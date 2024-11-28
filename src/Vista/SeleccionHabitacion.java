@@ -44,24 +44,17 @@ public class SeleccionHabitacion extends javax.swing.JFrame {
         
     }
     void agregarTabla() {
-    Object[] ob = new Object[8]; // Arreglo para almacenar los datos de la reserva
-    modelo.setRowCount(0); // Limpiar el modelo de la tabla antes de agregar filas nuevas
+    Object[] ob = new Object[8]; 
+    modelo.setRowCount(0); 
 
     for (Reserva reserva : listaReservas) {
         String tipoHabitacion = reserva.getTipoHabitacion();
         int numeroPersonas = reserva.getNumeroPersonas();
 
-        // Verificar si el tipo de habitación es "Individual" y excede 1 persona
-        if (tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) {
-            JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.",
-                    "Error en la reserva", JOptionPane.WARNING_MESSAGE);
-            continue; // Saltar a la siguiente iteración
-        }
 
-        // Obtener los datos del cliente asociado a la reserva
         Cliente cliente = reserva.getCliente();
 
-        // Agregar los datos al arreglo si cumplen las condiciones
+       
         ob[0] = cliente.getNombre();
         ob[1] = cliente.getTelefono();
         ob[2] = cliente.getCorreo();
@@ -71,10 +64,10 @@ public class SeleccionHabitacion extends javax.swing.JFrame {
         ob[6] = tipoHabitacion;
         ob[7] = numeroPersonas;
 
-        modelo.addRow(ob); // Agregar la fila al modelo
+        modelo.addRow(ob);
     }
 
-    tblhotel.setModel(modelo); // Actualizar el modelo de la tabla
+    tblhotel.setModel(modelo); 
 }
 
      
@@ -93,7 +86,7 @@ public class SeleccionHabitacion extends javax.swing.JFrame {
         FechaLlegada.setText("");
         FechaSalida.setText("");
         NumeroPersonas.setText("");
-        Tipo.setSelectedIndex(0);  // Restablecer el comboBox
+        Tipo.setSelectedIndex(0); 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -513,7 +506,7 @@ public class SeleccionHabitacion extends javax.swing.JFrame {
  try {
         Cliente.incrementarReservas();
         
-        // Capturar los datos del formulario
+       
         String nombre = Nombre.getText().trim();
         String telefono = Telefono.getText().trim();
         String correo = Correo.getText().trim();
@@ -537,11 +530,17 @@ public class SeleccionHabitacion extends javax.swing.JFrame {
             throw new IllegalArgumentException("El campo 'Número de personas' debe ser un número válido.");
         }
 
-        // Validar que las habitaciones individuales solo acepten una persona
-        if (tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) {
-            JOptionPane.showMessageDialog(null, "Solo se permite 1 persona para habitaciones individuales.", 
+        if ((tipoHabitacion.equalsIgnoreCase("Individual") && numeroPersonas > 1) || 
+            (tipoHabitacion.equalsIgnoreCase("Doble") && numeroPersonas > 2)) {
+            
+
+            String mensajeError = tipoHabitacion.equalsIgnoreCase("Individual") ?
+                "Solo se permite 1 persona para habitaciones individuales." :
+                "Solo se permiten 2 personas para habitaciones dobles.";
+            
+            JOptionPane.showMessageDialog(null, mensajeError, 
                                           "Error en la reserva", JOptionPane.WARNING_MESSAGE);
-            return; // No continuar si no se cumple la validación
+            return; 
         }
 
         // Crear el cliente
