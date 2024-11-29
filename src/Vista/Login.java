@@ -169,7 +169,7 @@ public class Login extends javax.swing.JFrame {
 
     private void InvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvitadoActionPerformed
             this.dispose();
-            new Inicio().setVisible(true);
+            new INICIO().setVisible(true);
     }//GEN-LAST:event_InvitadoActionPerformed
 
     /**

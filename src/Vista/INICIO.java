@@ -181,7 +181,7 @@ public class INICIO extends javax.swing.JFrame {
     Cliente.incrementarContador();
 
     // Cambiar a la siguiente interfaz
-    Interfaz2 Htl = new Interfaz2();
+    SeleccionHotel Htl = new SeleccionHotel();
     Htl.setVisible(true);
     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
